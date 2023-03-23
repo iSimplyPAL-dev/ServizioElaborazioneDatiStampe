@@ -35,7 +35,7 @@ namespace ServizioElaborazioneDatiStampe
 		
 		// true --> quando si deve buildare il servizio
 		// false --> quando si vuole lanciare in console per il debug
-		private static bool _runService = false;
+		private static bool _runService = true;
 
 		public ElaborazioneDatiStampe()
 		{

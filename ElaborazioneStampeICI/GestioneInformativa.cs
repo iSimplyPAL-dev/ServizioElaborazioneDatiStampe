@@ -1431,12 +1431,14 @@ namespace ElaborazioneStampeICI
         /// <param name="CodContribuente"></param>
         /// <param name="CodiceEnte"></param>
         /// <returns></returns>
-        //***201807 - se stampo un contribuente il nome file è CFPIVA ***
+        /// <revisionHistory><revision date="07/2018">se stampo un contribuente il nome file è CFPIVA</revision></revisionHistory>
+        /// <revisionHistory><revision date="23/03/2023">Aggiunto gestione PEC per relata di notifica</revision></revisionHistory>
         private ArrayList GetBookmarkInformativa(ArrayList arrListBookmark, int AnnoRiferimento, int CodContribuente, string CodiceEnte, string Tributo, ref string FileNameContrib)
         {
             string sCognome, sNome, sCFPIVA;
             string sCAPRes, sComuneRes, sPVRes, sViaRes, sCivicoRes, sFrazioneRes;
             string sNomeCO, sComuneCO, sViaCO;
+            string sPEC;
             FileNameContrib = "Contribuente" + CodContribuente.ToString();
             try
             {
@@ -1448,6 +1450,7 @@ namespace ElaborazioneStampeICI
                 sCognome = sNome = sCFPIVA = string.Empty;
                 sCAPRes = sComuneRes = sPVRes = sViaRes = sCivicoRes = sFrazioneRes = string.Empty;
                 sNomeCO = sComuneCO = sViaCO = string.Empty;
+                sPEC = string.Empty;
                 foreach (DataRowView myRow in oDettAnag)
                 {
                     sCognome = GestioneBookmark.FormatString(myRow["COGNOME_DENOMINAZIONE"]);
@@ -1472,6 +1475,7 @@ namespace ElaborazioneStampeICI
                         sViaCO = GestioneBookmark.FormatString(myRow["VIA_INVIO"]);
                         sComuneCO = GestioneBookmark.FormatString(myRow["COMUNE_INVIO"]);
                     }
+                    sPEC = GestioneBookmark.FormatString(myRow["PEC"]);
                 }
                 // COGNOME
                 //arrListBookmark.Add(GestioneBookmark.ReturnBookmark("I_cognome", sCognome));
@@ -1543,6 +1547,11 @@ namespace ElaborazioneStampeICI
                     arrListBookmark.Add(GestioneBookmark.ReturnBookmark(("I_codice_fiscale" + x.ToString()).Replace("0", ""), GestioneBookmark.FormatString(sCFPIVA)));
                 }
                 arrListBookmark.Add(GestioneBookmark.ReturnBookmark("I_cod_fiscale_boll", sCFPIVA));
+                //PEC
+                for (int x = 0; x <= 9; x++)
+                {
+                    arrListBookmark.Add(GestioneBookmark.ReturnBookmark(("I_PEC" + x.ToString()).Replace("0", ""), GestioneBookmark.FormatString(sPEC)));
+                }
 
                 if (sCFPIVA != string.Empty)
                     FileNameContrib = sCFPIVA;
