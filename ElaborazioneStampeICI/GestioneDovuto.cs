@@ -1013,6 +1013,9 @@ namespace ElaborazioneStampeICI
         /// <param name="ColumnName"></param>
         /// <param name="Tributo"></param>
         /// <returns></returns>
+        /// <revisionHistory>
+        /// <revision date="30/03/2023">Aggiunto tributo TEFA</revision>
+        /// </revisionHistory>
         public static string CodiceTributo(string ColumnName, string Tributo)
         {
             string risultato = "";
@@ -1106,6 +1109,10 @@ namespace ElaborazioneStampeICI
                         else if ((ColumnName.IndexOf("TARES") >= 0))
                         {
                             risultato = "3944";
+                        }
+                        else if ((ColumnName.IndexOf("TEFA") >= 0))
+                        {
+                            risultato = "TEFA";
                         }
                         else if ((ColumnName.IndexOf("MAGGIORAZIONE") >= 0))
                         {

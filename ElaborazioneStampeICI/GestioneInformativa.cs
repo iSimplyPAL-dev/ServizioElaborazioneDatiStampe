@@ -1431,8 +1431,10 @@ namespace ElaborazioneStampeICI
         /// <param name="CodContribuente"></param>
         /// <param name="CodiceEnte"></param>
         /// <returns></returns>
-        /// <revisionHistory><revision date="07/2018">se stampo un contribuente il nome file è CFPIVA</revision></revisionHistory>
-        /// <revisionHistory><revision date="23/03/2023">Aggiunto gestione PEC per relata di notifica</revision></revisionHistory>
+        /// <revisionHistory>
+        /// <revision date="07/2018">se stampo un contribuente il nome file è CFPIVA</revision>
+        /// <revision date="23/03/2023">Aggiunto gestione PEC per relata di notifica</revision>
+        /// </revisionHistory>
         private ArrayList GetBookmarkInformativa(ArrayList arrListBookmark, int AnnoRiferimento, int CodContribuente, string CodiceEnte, string Tributo, ref string FileNameContrib)
         {
             string sCognome, sNome, sCFPIVA;
